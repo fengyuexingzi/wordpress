@@ -28,12 +28,14 @@ $data = array(
 
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, build_query($data));
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 curl_setopt($ch, CURLOPT_TRANSFERTEXT, true);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 curl_setopt($ch, CURLOPT_HEADER, false);
 $result = curl_exec($ch);
 $info = curl_getinfo($ch);
 curl_close($ch);
+echo '<pre>';
 print_r($info);
-var_dump($result);
+print_r($result);
+echo '</pre>';
