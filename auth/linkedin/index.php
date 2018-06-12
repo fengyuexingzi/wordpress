@@ -12,6 +12,7 @@ register_shutdown_function('shutdown');
 
 function shutdown(){
     error_get_last();
+    die('shutdown');
 }
 
 $url = "https://www.linkedin.com/oauth/v2/accessToken";
