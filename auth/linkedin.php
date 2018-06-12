@@ -5,4 +5,7 @@
  * Date: 2018/6/12
  * Time: 14:22
  */
-phpinfo();
+
+$content = file_get_contents("php://input");
+
+echo $content;
