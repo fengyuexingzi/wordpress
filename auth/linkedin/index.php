@@ -26,8 +26,9 @@ function curl_get($url, $data)
 {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Authorization: Bearer' . $data['access_token'],
+        'Authorization: ' . $data['access_token'],
     ]);
+    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
     curl_setopt($ch, CURLOPT_HEADER, false);
