@@ -15,6 +15,14 @@ $data = [
 
 $info_url = "https://api.linkedin.com/v1/people/~?format=json";
 
+register_shutdown_function('shutdown');
+
+function shutdown()
+{
+    print_r(error_get_last());
+    die('shutdown');
+}
+
 function dump($data)
 {
     echo '<pre>';
@@ -44,14 +52,6 @@ $result = curl_get($info_url, $data);
 dump($result);
 
 die;
-
-register_shutdown_function('shutdown');
-
-function shutdown()
-{
-    print_r(error_get_last());
-    die('shutdown');
-}
 
 $url = "https://www.linkedin.com/oauth/v2/accessToken";
 
