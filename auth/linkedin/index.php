@@ -6,7 +6,41 @@
  * Time: 15:17
  */
 
-// https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81cc4t9fuu9bpu&redirect_uri=https%3A%2F%2Ffengyuexingzi.top%2Fauth%2Flinkedin&state=987654321&scope=r_basicprofile
+$code_url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81cc4t9fuu9bpu&redirect_uri=https%3A%2F%2Ffengyuexingzi.top%2Fauth%2Flinkedin&state=987654321&scope=r_basicprofile";
+
+$data = [
+    'access_token' => "AQXMRNlQv7rqemb6KmBKMWurtL7I6KV381MUxXQIeW6YszIueblWCVatVrVACzO-L2wWI7VSgto_hvH_ET1E7aVUjAalRXvcEu4qsWx57YS1yVANEbpez3dQUupIRrqGOGnokRHR64nQyVFqTPaS9e2hPvO_miOtlBD3mzQjxLC1O2xxJrG4BIWohlNmMyxgvVXM2OZCurPG5rFyfoitB-rmI6JyvW4tUYRFoJLe5XzjfpUWoe0OUzWxo8y67xrY4tIBAILKGnMM2KDfHKyVJx9JDoVC7jCPHaWC9mSEWSSlunC5Q_xJuJb98MPwDUlrtXkvpJSC9yzbsODR_nnBr5coHEcIlA",
+
+];
+
+$info_url = "https://api.linkedin.com/v1/people/~?format=json";
+
+function dump($data)
+{
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+}
+
+function curl_get($url, $data)
+{
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Authorization: Bearer' . $data['access_token'],
+    ]);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    $result = curl_exec($ch);
+    curl_close($ch);
+    return json_decode($result, true);
+}
+
+$result = curl_get($info_url, $data);
+
+dump($result);
+
+die;
 
 register_shutdown_function('shutdown');
 
@@ -35,7 +69,8 @@ curl_setopt($ch, CURLOPT_HEADER, false);
 $result = curl_exec($ch);
 $info = curl_getinfo($ch);
 curl_close($ch);
-echo '<pre>';
-print_r($info);
-print_r($result);
-echo '</pre>';
+
+$result = json_decode($result, true);
+if (isset($result['access_token'])) {
+
+}
