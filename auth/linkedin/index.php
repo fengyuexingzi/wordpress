@@ -39,7 +39,7 @@ function curl_get($url, $data)
     curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_HEADER, true);
     $result = curl_exec($ch);
     $info = curl_getinfo($ch);
     $result = array_merge(json_decode($result, true), $info);
