@@ -10,8 +10,9 @@
 
 register_shutdown_function('shutdown');
 
-function shutdown(){
-    error_get_last();
+function shutdown()
+{
+    print_r(error_get_last());
     die('shutdown');
 }
 
@@ -25,8 +26,8 @@ $data = array(
     'client_secret' => 'GdY3ZO8LAHn8y4tX',
 );
 
-$ch = init($url);
-curl_setopt($ch,CURLOPT_POST,true);
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, build_query($data));
 curl_setopt($ch, CURLOPT_TRANSFERTEXT, true);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
