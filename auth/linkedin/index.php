@@ -33,6 +33,8 @@ function curl_get($url, $data)
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
     curl_setopt($ch, CURLOPT_HEADER, false);
     $result = curl_exec($ch);
+    $info = curl_getinfo($ch);
+    $result = array_merge($result, $info);
     curl_close($ch);
     return json_decode($result, true);
 }
