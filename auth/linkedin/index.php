@@ -3,9 +3,7 @@
  * Created by PhpStorm.
  * User: Administrator
  * Date: 2018/6/12
- * Time: 14:22
+ * Time: 15:17
  */
 
-$content = file_get_contents("php://input");
-
-echo $content;
+print_r($GLOBALS);
