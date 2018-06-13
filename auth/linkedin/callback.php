@@ -61,8 +61,8 @@ function getInfo($access_token)
         'Authorization: Bearer ' . $data['access_token'],
     ]);
 
-    //curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-    //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     //curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);

@@ -16,6 +16,7 @@ $_SESSION['state'] = $state;
 
 if (isset($_SESSION['info'])) {
     dump($_SESSION['info']);
+    unset($_SESSION['info']);
 }
 
 function getCodeUrl()
