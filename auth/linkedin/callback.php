@@ -58,7 +58,7 @@ function getInfo($access_token)
 
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Authorization: ' . $data['access_token'],
+        'Authorization: Bearer ' . $data['access_token'],
     ]);
 
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
