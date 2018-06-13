@@ -68,6 +68,10 @@ function getInfo($url, $access_token)
     return $info;
 }
 
+if ($_GET['state'] != $state) {
+    die('hack');
+}
+
 //$access_token = getAccessToken($_GET['code']);
 
-dump($GLOBALS);
+dump($_SESSION);
