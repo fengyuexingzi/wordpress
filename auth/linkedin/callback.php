@@ -9,8 +9,7 @@
 require_once "./function.php";
 
 session_start();
-
-$state = 'x1Dr3Nu0AaxM1TuLVuGwAJWM';
+$state = $_SESSION['state'];
 
 // step 1: get access token by code
 function getAccessToken($code)
@@ -74,6 +73,8 @@ if ($_GET['state'] != $state) {
     die('hack');
 }
 
-//$access_token = getAccessToken($_GET['code']);
-
+dump($_REQUEST);
 dump($_SESSION);
+
+$access_token = getAccessToken($_GET['code']);
+
