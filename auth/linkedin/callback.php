@@ -68,11 +68,9 @@ function getInfo($access_token)
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
     curl_setopt($ch, CURLOPT_HEADER, true);
     $result = curl_exec($ch);
-    $info = curl_getinfo($ch);
-    $info['result'] = $result;
     curl_close($ch);
 
-    return $info;
+    return $result;
 }
 
 // 防止 CSRF 跨站请求伪造
@@ -92,6 +90,6 @@ unset($_SESSION['state']);
 // 此处应保存至数据库或 Redis
 
 $info = getInfo();
-$info = json_encode($info);
+//$info = json_encode($info);
 
 header("Location: https://fengyuexingzi.top/auth/linkedin?access_token=${info}");
