@@ -19,7 +19,7 @@ function getAccessToken($code)
     $data = array(
         'grant_type' => 'authorization_code',
         'code' => $code,
-        'redirect_uri' => 'https://fengyuexingzi.top/auth/linkedin',
+        'redirect_uri' => 'https://fengyuexingzi.top/auth/linkedin/callback.php',
         'client_id' => '81cc4t9fuu9bpu',
         'client_secret' => 'GdY3ZO8LAHn8y4tX',
     );
@@ -72,6 +72,7 @@ function getInfo($url, $access_token)
 if ($_GET['state'] != $state) {
     die('hack');
 }
+unset($_SESSION['state']);
 
 dump($_REQUEST);
 dump($_SESSION);
