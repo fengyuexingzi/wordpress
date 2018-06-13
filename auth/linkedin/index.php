@@ -15,11 +15,11 @@ $state = 'x1Dr3Nu0AaxM1TuLVuGwAJWM';
 
 function getCodeUrl()
 {
-    $url = 'https://www.linkedin.com/oauth/v2/authorization';
+    $url = 'https://www.linkedin.com/oauth/v2/authorization?';
     $data = array(
         'response_type' => 'code',
         'client_id' => '81cc4t9fuu9bpu',
-        'redirect_uri' => 'https://fengyuexingzi.top/auth/linkedin',
+        'redirect_uri' => 'https://fengyuexingzi.top/auth/linkedin/callback.php',
         'state' => $GLOBALS['state'],
         'scope' => 'r_fullprofile r_emailaddress w_share',
     );
