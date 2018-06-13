@@ -70,4 +70,4 @@ function getInfo($url, $access_token)
 
 //$access_token = getAccessToken($_GET['code']);
 
-print_r($GLOBALS);
+dump($GLOBALS);

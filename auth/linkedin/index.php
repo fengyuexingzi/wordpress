@@ -21,7 +21,7 @@ function getCodeUrl()
         'client_id' => '81cc4t9fuu9bpu',
         'redirect_uri' => 'https://fengyuexingzi.top/auth/linkedin/callback.php',
         'state' => $GLOBALS['state'],
-        'scope' => 'r_fullprofile r_emailaddress w_share',
+        'scope' => 'r_basicprofile r_emailaddress w_share',
     );
     foreach ($data as $k => $v) {
         if (!$v) {
