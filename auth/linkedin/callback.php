@@ -8,6 +8,8 @@
 
 require_once "./function.php";
 
+session_start();
+
 $state = 'x1Dr3Nu0AaxM1TuLVuGwAJWM';
 
 // step 1: get access token by code
