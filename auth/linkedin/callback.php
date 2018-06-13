@@ -63,10 +63,9 @@ function getInfo($access_token)
 
     //curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+    //curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-    curl_setopt($ch, CURLOPT_HEADER, true);
     $result = curl_exec($ch);
     curl_close($ch);
 
@@ -90,7 +89,6 @@ unset($_SESSION['state']);
 // 此处应保存至数据库或 Redis
 
 $info = getInfo();
-//$info = json_encode($info);
 
 $_SESSION['info'] = $info;
 
