@@ -10,9 +10,12 @@ register_shutdown_function('shutdown');
 
 function shutdown()
 {
-    echo '<pre>';
-    print_r(error_get_last());
-    echo '</pre>';
+    $error = error_get_last();
+    if ($error) {
+        echo '<pre>';
+        print_r($error);
+        echo '</pre>';
+    }
 }
 
 function dump($data)

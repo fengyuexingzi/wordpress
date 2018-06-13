@@ -6,7 +6,7 @@
  * Time: 15:17
  */
 
-require_once"./function.php";
+require_once "./function.php";
 
 // get_code_url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81cc4t9fuu9bpu&redirect_uri=https%3A%2F%2Ffengyuexingzi.top%2Fauth%2Flinkedin&state=Wf6tYXQ7y86iRulBOC%2FUXraHneM%3D&scope=r_fullprofile%20r_emailaddress%20w_share";
 
@@ -38,3 +38,5 @@ $url = getCodeUrl();
 $html = <<<EOF
 <a href="${url}">获取授权</a>
 EOF;
+
+echo $html;
