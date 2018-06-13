@@ -19,7 +19,9 @@ register_shutdown_function('shutdown');
 
 function shutdown()
 {
+    echo '<pre>';
     print_r(error_get_last());
+    echo '</pre>';
     die('shutdown');
 }
 
@@ -42,9 +44,10 @@ function curl_get($url, $data)
     curl_setopt($ch, CURLOPT_HEADER, true);
     $result = curl_exec($ch);
     $info = curl_getinfo($ch);
-    $result = array_merge(json_decode($result, true), $info);
+    $info['result'] = $result;
     curl_close($ch);
-    return $result;
+
+    return $info;
 }
 
 $result = curl_get($info_url, $data);
