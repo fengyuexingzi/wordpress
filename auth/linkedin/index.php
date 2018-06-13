@@ -14,6 +14,10 @@ $state = base64_encode(openssl_random_pseudo_bytes(20));
 session_start();
 $_SESSION['state'] = $state;
 
+if (isset($_SESSION['info'])) {
+    dump($_SESSION['info']);
+}
+
 function getCodeUrl()
 {
     $url = 'https://www.linkedin.com/oauth/v2/authorization?';

@@ -92,4 +92,6 @@ unset($_SESSION['state']);
 $info = getInfo();
 //$info = json_encode($info);
 
-header("Location: https://fengyuexingzi.top/auth/linkedin?access_token=${info}");
+$_SESSION['info'] = $info;
+
+header("Location: https://fengyuexingzi.top/auth/linkedin");
