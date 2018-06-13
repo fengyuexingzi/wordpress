@@ -12,7 +12,7 @@ require_once "./function.php";
 
 $state = base64_encode(openssl_random_pseudo_bytes(20));
 session_start();
-$_SESSION['$state'] = $state;
+$_SESSION['state'] = $state;
 
 function getCodeUrl()
 {
