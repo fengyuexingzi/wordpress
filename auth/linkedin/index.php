@@ -24,23 +24,6 @@ $tokenInfo = [
     'expires_in' => '1534052395',
 ];
 
-if ($tokenInfo['expires_in'] < time()) {
-    $html = <<<EOF
-<a href="${url}">获取授权</a>
-EOF;
-} else {
-    $hdrs = [
-        'http' => [
-            'header' =>
-                "Accept: application/json\r\n" .
-                "Authorization: Bearer ${tokenInfo['access_token']}",
-            'timeout' => 2
-        ],
-    ];
-    $context = stream_context_create($hdrs);
-    echo file_get_contents('https://api.linkedin.com/v1/people/~?format=json', 0, $context);
-}
-
 function getCodeUrl()
 {
     $url = 'https://www.linkedin.com/oauth/v2/authorization?';
@@ -63,4 +46,20 @@ function getCodeUrl()
 
 $url = getCodeUrl();
 
-echo $html;
+if ($tokenInfo['expires_in'] < time()) {
+    $html = <<<EOF
+<a href="${url}">获取授权</a>
+EOF;
+    echo $html;
+} else {
+    $hdrs = [
+        'http' => [
+            'header' =>
+                "Accept: application/json\r\n" .
+                "Authorization: Bearer ${tokenInfo['access_token']}",
+            'timeout' => 2
+        ],
+    ];
+    $context = stream_context_create($hdrs);
+    echo file_get_contents('https://api.linkedin.com/v1/people/~?format=json', 0, $context);
+}
