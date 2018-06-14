@@ -19,6 +19,28 @@ if (isset($_SESSION['info'])) {
     unset($_SESSION['info']);
 }
 
+$tokenInfo = [
+    'access_token' => 'AQUhXDdWEWNdYAn6zHrahzIWATYDW4OptdpCPmAcPoSW9mIIdUwhpQj8XLTIIP1PyDBUs5hyUb86it8GQNS7kcsW3o4QggkAiswA2c3X-nO8byjQBaIiRoQuyGpboEN672NRWgB6B7PvtX4Gujz6BWf0sUPvIITKRdF_PoasfDrits5TJGsnJZZFxm8JzDamQ8Xt4tzal1zMqundj1I5OxyGWhdl9uGuly9M2NfsZZ6_qxT0b7OnaWUU6dq5uKVSqsR_QY8HlDgBtw-HGvODNHMmPhtigjrdcoMaztobvNj7ReTMWN-TNhWLEb4QZaoWCG2X7b9bXnUYi1Cbp_VZoOaj_jMRug',
+    'expires_in' => '1534052395',
+];
+
+if ($tokenInfo['expires_in'] < time()) {
+    $html = <<<EOF
+<a href="${url}">获取授权</a>
+EOF;
+} else {
+    $hdrs = [
+        'http' => [
+            'header' =>
+                "Accept: application/json\r\n" .
+                "Authorization: Bearer ${tokenInfo['access_token']}",
+            'timeout' => 2
+        ],
+    ];
+    $context = stream_context_create($hdrs);
+    echo file_get_contents('https://api.linkedin.com/v1/people/~?format=json', 0, $context);
+}
+
 function getCodeUrl()
 {
     $url = 'https://www.linkedin.com/oauth/v2/authorization?';
@@ -40,9 +62,5 @@ function getCodeUrl()
 }
 
 $url = getCodeUrl();
-
-$html = <<<EOF
-<a href="${url}">获取授权</a>
-EOF;
 
 echo $html;
