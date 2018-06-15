@@ -30,14 +30,8 @@
     function fbLogin() {
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
-                // Logged into your app and Facebook.
-                FB.api('/me', {fields: 'name,last_name'}, function (response) {
-                    console.log(response);
-                    console.log('Successful login for: ' + response.name);
-                    document.getElementById('status').innerHTML =
-                        'Thanks for logging in, ' + response.name + '!';
-                });
                 console.log("login in");
+                console.log(response);
             } else {
                 FB.login(function (response) {
                     console.log(response);
