@@ -49,12 +49,13 @@
     // Facebook LoginOut
     function fbLoginOut() {
         FB.getLoginStatus(function (response) {
-            if (response.status === 'connected') {
-                FB.logout(function (response) {
-                    console.log('login out');
-                    // Person is now logged out
-                });
-            }
+            console.log(response);
+            // if (response.status === 'connected') {
+            //     FB.logout(function (response) {
+            //         console.log('login out');
+            //         // Person is now logged out
+            //     });
+            // }
         });
     }
 </script>
