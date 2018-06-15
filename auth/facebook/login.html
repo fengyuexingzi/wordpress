@@ -30,11 +30,12 @@
     function fbLogin() {
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
-                console.log("login in");
-                console.log(response);
+                fbCallInfo(response);
             } else {
                 FB.login(function (response) {
-                    console.log(response);
+                    if (response.status === 'connected'){
+                        fbCallInfo(response);
+                    }
                 }, {scope: 'public_profile,email'});
             }
         });
@@ -49,6 +50,27 @@
                     console.log('login out');
                     // Person is now logged out
                 });
+            }
+        });
+    }
+
+    // send info to server
+    function fbCallInfo(response) {
+        $.ajax({
+            url: '',
+            type: 'post',
+            ContentType: 'json',
+            data: response,
+            dateTyep: 'json',
+            success: function (data, status) {
+                if (status == 'success') {
+                    console.log(data);
+                } else {
+                    console.log(status);
+                }
+            },
+            error: function (xhr, error) {
+                console.log(error);
             }
         });
     }
