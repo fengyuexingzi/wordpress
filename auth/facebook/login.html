@@ -50,12 +50,14 @@
     function fbLoginOut() {
         FB.getLoginStatus(function (response) {
             console.log(response);
-            // if (response.status === 'connected') {
-            //     FB.logout(function (response) {
-            //         console.log('login out');
-            //         // Person is now logged out
-            //     });
-            // }
+            if (response.status === 'connected') {
+                FB.logout(function (response) {
+                    console.log('login out');
+                    // Person is now logged out
+                });
+            } else {
+                console.log('not login');
+            }
         });
     }
 </script>
