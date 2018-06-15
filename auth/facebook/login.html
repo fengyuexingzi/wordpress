@@ -30,11 +30,13 @@
     function fbLogin() {
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
-                fbCallInfo(response);
+                console.log(response);
+               // fbCallInfo(response);
             } else {
                 FB.login(function (response) {
                     if (response.status === 'connected'){
-                        fbCallInfo(response);
+                        console.log(response);
+                       // fbCallInfo(response);
                     }
                 }, {scope: 'public_profile,email'});
             }
