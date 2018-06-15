@@ -105,3 +105,5 @@ $html = <<<EOF
 </body>
 </html>
 EOF;
+
+echo $html;

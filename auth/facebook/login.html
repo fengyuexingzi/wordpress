@@ -6,12 +6,31 @@
 </head>
 <body>
 
+<button onclick="checkLoginState()">FaceBook Login</button>
 <div id="status">
 </div>
 
 <script src="jquery.min.js"></script>
 
 <script>
+
+    $(document).ready(function() {
+        $.ajaxSetup({ cache: true });
+        $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+            FB.init({
+                appId: '176954776322838',
+                version: 'v2.8'
+            });
+            $('#loginbutton,#feedbutton').removeAttr('disabled');
+            FB.getLoginStatus(updateStatusCallback);
+        });
+    });
+
+    function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
+    }
 
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
@@ -39,17 +58,6 @@
         });
     }
 
-    $(document).ready(function() {
-        $.ajaxSetup({ cache: true });
-        $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
-            FB.init({
-                appId: '176954776322838',
-                version: 'v2.8'
-            });
-            $('#loginbutton,#feedbutton').removeAttr('disabled');
-            FB.getLoginStatus(updateStatusCallback);
-        });
-    });
 </script>
 
 
