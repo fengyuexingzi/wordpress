@@ -6,7 +6,8 @@
 </head>
 <body>
 
-<button onclick="checkLoginState()">FaceBook Login</button>
+<button id="login" onclick="checkLoginState()">FaceBook Login</button>
+<button id="login_out" onclick="loginOut()">FaceBook Login Out</button>
 <div id="status">
 </div>
 
@@ -14,9 +15,9 @@
 
 <script>
 
-    $(document).ready(function() {
-        $.ajaxSetup({ cache: true });
-        $.getScript('https://connect.facebook.net/en_US/sdk.js', function(){
+    $(document).ready(function () {
+        $.ajaxSetup({cache: true});
+        $.getScript('https://connect.facebook.net/en_US/sdk.js', function () {
             FB.init({
                 appId: '176954776322838',
                 version: 'v2.8'
@@ -27,7 +28,7 @@
     });
 
     function checkLoginState() {
-        FB.getLoginStatus(function(response) {
+        FB.getLoginStatus(function (response) {
             statusChangeCallback(response);
         });
     }
@@ -36,14 +37,24 @@
         console.log('statusChangeCallback');
         console.log(response);
         if (response.status === 'connected') {
+            $("#login").text('Login Out');
             // Logged into your app and Facebook.
             testAPI();
         } else {
-            FB.login();
+            FB.login(function (response) {
+                statusChangeCallback();
+                window.history.back();
+            }, {scope: 'public_profile,email'});
             // The person is not logged into your app or we are unable to tell.
             document.getElementById('status').innerHTML = 'Please log ' +
                 'into this app.';
         }
+    }
+
+    function loginOut() {
+        FB.logout(function (response) {
+            // Person is now logged out
+        });
     }
 
     function updateStatusCallback(response) {
@@ -52,7 +63,7 @@
 
     function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
+        FB.api('/me', function (response) {
             console.log('Successful login for: ' + response.name);
             document.getElementById('status').innerHTML =
                 'Thanks for logging in, ' + response.name + '!';
