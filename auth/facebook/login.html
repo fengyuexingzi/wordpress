@@ -48,8 +48,13 @@
 
     // Facebook LoginOut
     function fbLoginOut() {
-        FB.logout(function (response) {
-            // Person is now logged out
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                FB.logout(function (response) {
+                    console.log('login out');
+                    // Person is now logged out
+                });
+            }
         });
     }
 </script>
