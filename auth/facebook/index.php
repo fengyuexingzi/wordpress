@@ -14,14 +14,14 @@ try {
         'app_secret' => '8f6335f6d9834f78f0c362d9db15d29b1',
         'default_graph_version' => 'v3.0',
     ]);
+
+    $helper = $fb->getJavaScriptHelper();
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
     echo 'Facebook SDK returned an error: ' . $e->getMessage();
     exit;
 }
-
 die;
 
-$helper = $fb->getJavaScriptHelper();
 
 try {
     $accessToken = $helper->getAccessToken();
