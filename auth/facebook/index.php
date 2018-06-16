@@ -50,7 +50,8 @@ try {
     echo 'Facebook SDK returned an error: ' . $e->getMessage();
     exit;
 }
-
+$graphNode = $response->getGraphNode();
+var_dump($graphNode);
 $me = $response->getGraphUser();
 var_dump($me);
 
