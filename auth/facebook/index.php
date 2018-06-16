@@ -19,6 +19,8 @@ try {
     exit;
 }
 
+die;
+
 $helper = $fb->getJavaScriptHelper();
 
 try {
