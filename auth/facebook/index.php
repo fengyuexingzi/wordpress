@@ -8,6 +8,10 @@
 
 require_once '../../vendor/autoload.php';
 
+register_shutdown_function(function () {
+    var_dump(error_get_last());
+});
+
 try {
     $fb = new \Facebook\Facebook([
         'app_id' => '176954776322838',
@@ -15,12 +19,13 @@ try {
         'default_graph_version' => 'v3.0',
     ]);
 
-    $helper = $fb->getJavaScriptHelper();
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
     echo 'Facebook SDK returned an error: ' . $e->getMessage();
     exit;
 }
-die;
+
+$helper = $fb->getJavaScriptHelper();
+$helper = $fb->getJavaScriptHelper();
 
 
 try {
