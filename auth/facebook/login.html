@@ -32,12 +32,12 @@
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 console.log(response);
-                fbCallInfo();
+                //fbCallInfo();
             } else {
                 FB.login(function (response) {
                     if (response.status === 'connected') {
                         console.log(response);
-                        fbCallInfo();
+                       // fbCallInfo();
                     }
                 }, {scope: 'public_profile,email'});
             }
