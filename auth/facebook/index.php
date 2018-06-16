@@ -40,7 +40,7 @@ if (!isset($accessToken)) {
 }
 
 try {
-    $response = $fb->get('/me', (string)$accessToken);
+    $response = $fb->get('/me?fields=id,first_name,last_name,picture,email', (string)$accessToken);
 } catch(\Facebook\Exceptions\FacebookResponseException $e) {
     // When Graph returns an error
     echo 'Graph returned an error: ' . $e->getMessage();
