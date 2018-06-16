@@ -39,16 +39,7 @@ if (!isset($accessToken)) {
     exit;
 }
 
-// Logged in
-echo '<h3>Access Token</h3>';
-var_dump($accessToken->getValue());
-var_dump((string)$accessToken);
-
-$_SESSION['fb_access_token'] = (string)$accessToken;
-
 try {
-    // Get the \Facebook\GraphNodes\GraphUser object for the current user.
-    // If you provided a 'default_access_token', the '{access-token}' is optional.
     $response = $fb->get('/me', (string)$accessToken);
 } catch(\Facebook\Exceptions\FacebookResponseException $e) {
     // When Graph returns an error
@@ -61,5 +52,5 @@ try {
 }
 
 $me = $response->getGraphUser();
-echo 'Logged in as ' . $me->getName();
+var_dump($me);
 
