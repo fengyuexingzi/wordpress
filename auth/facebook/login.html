@@ -21,6 +21,7 @@
         $.getScript('https://connect.facebook.net/en_US/sdk.js', function () {
             FB.init({
                 appId: '176954776322838',
+                cookie: true,
                 version: 'v3.0'
             });
         });
@@ -31,12 +32,12 @@
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 console.log(response);
-               // fbCallInfo(response);
+                fbCallInfo();
             } else {
                 FB.login(function (response) {
-                    if (response.status === 'connected'){
+                    if (response.status === 'connected') {
                         console.log(response);
-                       // fbCallInfo(response);
+                        fbCallInfo();
                     }
                 }, {scope: 'public_profile,email'});
             }
@@ -57,13 +58,11 @@
     }
 
     // send info to server
-    function fbCallInfo(response) {
+    function fbCallInfo() {
         $.ajax({
-            url: '',
+            url: 'https://fengyuexingzi.top/auth/facebook/index.php',
             type: 'post',
-            ContentType: 'json',
-            data: response,
-            dateTyep: 'json',
+            data: '',
             success: function (data, status) {
                 if (status == 'success') {
                     console.log(data);
