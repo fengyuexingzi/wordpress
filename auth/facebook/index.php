@@ -53,5 +53,5 @@ try {
 $graphNode = $response->getGraphNode();
 var_dump($graphNode);
 $me = $response->getGraphUser();
-var_dump($me);
+var_dump($me->getFirstName());
 
