@@ -9,9 +9,9 @@
 require_once '../../vendor/autoload.php';
 
 $fb = new \Facebook\Facebook([
-    'app_id' => '{app-id}',
-    'app_secret' => '{app-secret}',
-    'default_graph_version' => 'v2.2',
+    'app_id' => '176954776322838',
+    'app_secret' => '8f6335f6d9834f78f0c362d9db15d29b',
+    'default_graph_version' => 'v3.0',
 ]);
 
 $helper = $fb->getJavaScriptHelper();
