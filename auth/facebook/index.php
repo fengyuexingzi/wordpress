@@ -15,6 +15,8 @@ try {
         'default_graph_version' => 'v3.0',
     ]);
 
+    var_dump($fb);
+
     $helper = $fb->getJavaScriptHelper();
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
     echo 'Facebook SDK returned an error: ' . $e->getMessage();
