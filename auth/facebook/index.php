@@ -42,6 +42,7 @@ if (!isset($accessToken)) {
 // Logged in
 echo '<h3>Access Token</h3>';
 var_dump($accessToken->getValue());
+var_dump((string)$accessToken);
 
 $_SESSION['fb_access_token'] = (string)$accessToken;
 
