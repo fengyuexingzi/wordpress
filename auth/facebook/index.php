@@ -8,25 +8,19 @@
 
 require_once '../../vendor/autoload.php';
 
-register_shutdown_function(function () {
-    var_dump(error_get_last());
-});
-
 try {
     $fb = new \Facebook\Facebook([
         'app_id' => '176954776322838',
-        'app_secret' => '8f6335f6d9834f78f0c362d9db15d29b1',
+        'app_secret' => '8f6335f6d9834f78f0c362d9db15d29b',
         'default_graph_version' => 'v3.0',
     ]);
+
+    $helper = $fb->getJavaScriptHelper();
 
 } catch (\Facebook\Exceptions\FacebookSDKException $e) {
     echo 'Facebook SDK returned an error: ' . $e->getMessage();
     exit;
 }
-
-$helper = $fb->getJavaScriptHelper();
-$helper = $fb->getJavaScriptHelper();
-
 
 try {
     $accessToken = $helper->getAccessToken();
@@ -50,4 +44,21 @@ echo '<h3>Access Token</h3>';
 var_dump($accessToken->getValue());
 
 $_SESSION['fb_access_token'] = (string)$accessToken;
+
+try {
+    // Get the \Facebook\GraphNodes\GraphUser object for the current user.
+    // If you provided a 'default_access_token', the '{access-token}' is optional.
+    $response = $fb->get('/me', (string)$accessToken);
+} catch(\Facebook\Exceptions\FacebookResponseException $e) {
+    // When Graph returns an error
+    echo 'Graph returned an error: ' . $e->getMessage();
+    exit;
+} catch(\Facebook\Exceptions\FacebookSDKException $e) {
+    // When validation fails or other local issues
+    echo 'Facebook SDK returned an error: ' . $e->getMessage();
+    exit;
+}
+
+$me = $response->getGraphUser();
+echo 'Logged in as ' . $me->getName();
 
