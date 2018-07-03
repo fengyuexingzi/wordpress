@@ -13,7 +13,7 @@
     // Setup an event listener to make an API call once auth is complete
     function onLinkedInLoad() {
         console.log('load');
-        IN.User.authorize(lkc);
+        IN.User.authorize(lk);
         IN.Event.on(IN, "auth", shareContent);
     }
 
